@@ -1,13 +1,52 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+#dog-collection {
+    margin: 2rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#card {
+    text-align: center;
+    border: grey solid 1px;
+    padding: 1rem;
+    width: 15rem;
+    height: 25rem;
+    display: inline-grid;
+    margin: 1rem 2rem;
+    box-shadow: 3px 4px #ffd1dc;
+}
+
+#card-details {
+    position: relative;
+    width: 15rem;
+    height: 25rem;
+    overflow: hidden;
+}
+
+.dog-avatar {
+    justify-self: center;
+    height: 12rem;
+    width: auto;
+    position: absolute;
+    top: -90%;
+    left: -100%;
+    right: -100%;
+    bottom: -110%;
+    margin: auto;
+}
+
+button {
+    position: relative;
+    color: white;
+    background-color: #A996B0;
+    transition: background-color .17s ease,color .17s ease;
+    border: none;
+    border-radius: 5px;
+    height: 3rem;
+    width: max-content;
+    color: whitesmoke;
+    font-size: 18px;
+    justify-self: center;
+}
+
+button:hover {
+    background-color: #D5B2C7;
 }
