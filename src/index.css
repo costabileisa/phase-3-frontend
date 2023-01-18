@@ -35,7 +35,8 @@
 
 button {
     position: relative;
-    color: white;
+    cursor: pointer;
+    outline: none;
     background-color: #A996B0;
     transition: background-color .17s ease,color .17s ease;
     border: none;
@@ -45,6 +46,7 @@ button {
     color: whitesmoke;
     font-size: 18px;
     justify-self: center;
+    padding: 2px 16px;
 }
 
 button:hover {
