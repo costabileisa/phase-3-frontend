@@ -17,7 +17,7 @@ function BreedForm({ dogData, setDogData }) {
             body: JSON.stringify(breedData)
         })
         .then(res => res.json())
-        .then(data => setDogData({...dogData, breed: breedData.breed}))
+        .then(() => setDogData({...dogData, breed: breedData.breed}))
     }
 
     function handleChange(e) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory, useParams } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 
 import DogCollection from "./DogCollection";
 import DogForm from "./DogForm";
@@ -16,7 +16,13 @@ function App() {
     }, [])
 
     function handleAddDog(dog) {
-        setDogs([...dogs, dog])
+        let ids = []
+        dogs.map(pup => ids = [...ids, pup.id])
+        if (ids.includes(dog.id)) {
+            return alert("That dog already exists!")
+        } else {
+            setDogs([...dogs, dog])
+        }
     }
 
     function addDog() {
