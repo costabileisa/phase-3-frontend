@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function DetailedDog() {
     const { id } = useParams()
+    const history = useHistory()
     const [dogInfo, setDogInfo] = useState({
         name: "",
         image: "",
@@ -28,11 +29,16 @@ function DetailedDog() {
         })
     }, [])
 
+    function goBack() {
+        history.push("/")
+    }
+
     return(
         <div id="detailed-dog">
             <h1>{name}</h1>
             <p>Breed: {breed} | Size: {size}</p>
-            <img src={image} alt={description} />
+            <img className="dog-image" src={image} alt={description} />
+            <button onClick={goBack} style={{float: "left"}}>Go Back</button>
         </div>
     )
 }

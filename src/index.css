@@ -36,6 +36,12 @@ body {
     margin: auto;
 }
 
+.dog-image {
+    height: 30rem;
+    width: auto;
+    display: block;
+}
+
 button {
     position: relative;
     cursor: pointer;
