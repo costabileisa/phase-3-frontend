@@ -14,9 +14,16 @@ function App() {
         .then(data => setDogs(data))
     }, [])
 
+    function handleDogUpdate(dog) {
+        console.log(dogs, dog)
+        setDogs(...dogs, dog)
+    }
+
     function addDog() {
         history.push("/add_dog")
     }
+
+    console.log(dogs)
 
     return (
         <div id="App">
@@ -26,7 +33,7 @@ function App() {
                     <DogCollection dogs={dogs} />
                 </Route>
                 <Route path="/add_dog">
-                    <DogForm />
+                    <DogForm handleDogUpdate={handleDogUpdate} />
                 </Route>
             </Switch>
         </div>
