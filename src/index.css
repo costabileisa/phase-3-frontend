@@ -63,13 +63,13 @@ input:hover {
     background-color: #ecedef
 }
 
-.dog-form > input, select, .search-input {
+form > input, select, .search-input {
     padding: 5px;
     margin-bottom: 10px;
     border-radius: 10px;
     border: 1.5px solid #A996B0
 }
-.dog-form > input:focus, select:focus, .search-input {
+form > input:focus, select:focus, .search-input {
     outline: none;
     box-shadow: #97849D;
 }

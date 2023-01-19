@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function DogForm({ handleDogUpdate }) {
+import BreedForm from "./BreedForm"
+
+function DogForm({ handleAddDog }) {
     const [dogData, setDogData] = useState({
         name: "",
         img_url: "",
@@ -44,18 +46,28 @@ function DogForm({ handleDogUpdate }) {
             body: JSON.stringify(dogData)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => handleAddDog(data))
+
+        history.push("/")
     }
 
     return(
         <div id="add-dog">
+            <h1>Dog Form</h1>
             <form className="dog-form" onSubmit={handleSubmit}>
+                {/* Name */}
                 <label htmlFor="name">Name:</label>
                 <input id="name" name="name" type="text" value={dogData.name} onChange={handleChange} />
+                <br />
+                {/* Image */}
                 <label htmlFor="url">Image URL:</label>
                 <input id="url" name="img_url" type="url" value={dogData.img_url} onChange={handleChange} />
+                <br />
+                {/* Description */}
                 <label htmlFor="description">Image Description:</label>
                 <input id="description" name="img_description" type="text" value={dogData.img_description} onChange={handleChange} />
+                <br />
+                {/* Breed */}
                 <label htmlFor="breed">Breed:</label>
                 <select id="breed" name="breed" value={dogData.breed} onChange={handleChange}>
                     <option>-</option>
@@ -65,7 +77,7 @@ function DogForm({ handleDogUpdate }) {
                 <br />
                 <input type="submit" />
             </form>
-            {breedForm ? <h1>HI</h1> : null}
+            {breedForm ? <BreedForm /> : null}
             <button onClick={goBack} style={{float: "left"}}>Go Back</button>
         </div>
     )
