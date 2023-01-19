@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 
-function BreedForm({ dogData, setDogData }) {
+function BreedForm({ breeds, setBreeds, dogData, setDogData }) {
     const [breedData, setBreedData] = useState({
         breed: "",
         size: ""
     })
+
+    function handleAddBreed(addBreed) {
+        let ids = []
+        breeds.map(breed => ids = [...ids, breed.id])
+        if (ids.includes(addBreed.id)) {
+            return alert("That breed already exists!")
+        } else {
+            setDogData({...dogData, breed: breedData.breed})
+            setBreeds([...breeds, addBreed])
+        }
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -17,7 +28,7 @@ function BreedForm({ dogData, setDogData }) {
             body: JSON.stringify(breedData)
         })
         .then(res => res.json())
-        .then(() => setDogData({...dogData, breed: breedData.breed}))
+        .then(data => handleAddBreed(data))
     }
 
     function handleChange(e) {

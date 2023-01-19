@@ -15,13 +15,13 @@ function App() {
         .then(data => setDogs(data))
     }, [])
 
-    function handleAddDog(dog) {
+    function handleAddDog(addDog) {
         let ids = []
-        dogs.map(pup => ids = [...ids, pup.id])
-        if (ids.includes(dog.id)) {
+        dogs.map(dog => ids = [...ids, dog.id])
+        if (ids.includes(addDog.id)) {
             return alert("That dog already exists!")
         } else {
-            setDogs([...dogs, dog])
+            setDogs([...dogs, addDog])
         }
     }
 

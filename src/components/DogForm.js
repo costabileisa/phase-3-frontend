@@ -77,7 +77,7 @@ function DogForm({ handleAddDog }) {
                 <br />
                 <input type="submit" />
             </form>
-            {breedForm ? <BreedForm dogData={dogData} setDogData={setDogData} /> : null}
+            {breedForm ? <BreedForm breeds={breeds} setBreeds={setBreeds} dogData={dogData} setDogData={setDogData} /> : null}
             <button onClick={goBack} style={{float: "left"}}>Go Back</button>
         </div>
     )
