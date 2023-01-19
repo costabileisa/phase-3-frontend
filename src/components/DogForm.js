@@ -19,7 +19,7 @@ function DogForm({ handleAddDog }) {
         fetch("http://localhost:9292/breeds")
         .then(res => res.json())
         .then(data => setBreeds(data))
-    }, [])
+    }, [dogData])
 
     const values = breeds.map(breed => <option key={breed.id}>{breed.breed}</option>)
 
@@ -77,7 +77,7 @@ function DogForm({ handleAddDog }) {
                 <br />
                 <input type="submit" />
             </form>
-            {breedForm ? <BreedForm /> : null}
+            {breedForm ? <BreedForm dogData={dogData} setDogData={setDogData} /> : null}
             <button onClick={goBack} style={{float: "left"}}>Go Back</button>
         </div>
     )

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function BreedForm() {
+function BreedForm({ dogData, setDogData }) {
     const [breedData, setBreedData] = useState({
         breed: "",
         size: ""
@@ -8,6 +8,16 @@ function BreedForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        fetch("http://localhost:9292/breeds", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(breedData)
+        })
+        .then(res => res.json())
+        .then(data => setDogData({...dogData, breed: breedData.breed}))
     }
 
     function handleChange(e) {
