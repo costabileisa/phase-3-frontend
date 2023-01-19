@@ -17,7 +17,7 @@ body {
     box-shadow: 3px 4px #ffd1dc;
 }
 
-#card-details {
+.card-details {
     position: relative;
     width: 15rem;
     height: 25rem;
