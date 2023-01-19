@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, useParams } from "react-router-dom";
 
 import DogCollection from "./DogCollection";
 import DogForm from "./DogForm";
+import DetailedDog from "./DetailedDog";
 
 function App() {
     const [dogs, setDogs] = useState([])
@@ -32,6 +33,9 @@ function App() {
                 </Route>
                 <Route path="/add_dog">
                     <DogForm handleAddDog={handleAddDog} />
+                </Route>
+                <Route path="/:id">
+                    <DetailedDog />
                 </Route>
             </Switch>
         </div>
