@@ -36,7 +36,7 @@ function DetailedDog() {
     return(
         <div id="detailed-dog">
             <h1>{name}</h1>
-            <p>Breed: {breed} | Size: {size}</p>
+            <p>Breed: {breed} | Adult Size: {size}</p>
             <img className="dog-image" src={image} alt={description} />
             <button onClick={goBack} style={{float: "left"}}>Go Back</button>
         </div>
