@@ -9,9 +9,12 @@ function DetailedDog() {
         image: "",
         description: "",
         breed: "",
-        size: ""
+        size: "",
+        likes: 0
     })
-    const { name, image, description, breed, size } = dogInfo;
+    let { name, image, description, breed, size, likes } = dogInfo;
+
+    console.log(dogInfo)
 
     useEffect(() => {
         fetch(`http://localhost:9292/dogs/${id}`)
@@ -20,11 +23,13 @@ function DetailedDog() {
             fetch(`http://localhost:9292/breeds/${dogData.breed_id}`)
             .then(res => res.json())
             .then(breedData => setDogInfo({
+                id: dogData.id,
                 name: dogData.name,
                 image: dogData.img_url,
                 description: dogData.img_description,
                 breed: breedData.breed,
-                size: breedData.size
+                size: breedData.size,
+                likes: dogData.likes
             }))
         })
     }, [])
@@ -33,10 +38,24 @@ function DetailedDog() {
         history.push("/")
     }
 
+    function handleLike() {
+        const newLikes = likes++
+        fetch(`http://localhost:9292/dogs/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify(newLikes)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setDogInfo({...dogInfo, likes: data.likes})
+        })
+    }
+
     return(
         <div id="detailed-dog">
             <h1>{name}</h1>
             <p>Breed: {breed} | Adult Size: {size}</p>
+            <button id={dogInfo.id} onClick={handleLike}>❤️</button>
+            <h4 id="likes-counter">Current Likes: {likes}</h4>
             <img className="dog-image" src={image} alt={description} />
             <button onClick={goBack} style={{float: "left"}}>Go Back</button>
         </div>

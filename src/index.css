@@ -80,3 +80,8 @@ form > input:focus, select:focus, .search-input {
     outline: none;
     box-shadow: #97849D;
 }
+
+#likes-counter {
+    display: inline-block;
+    padding-left: 20px;
+}
