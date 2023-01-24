@@ -4,6 +4,7 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import DogCollection from "./DogCollection";
 import DogForm from "./DogForm";
 import DetailedDog from "./DetailedDog";
+import Adoption from './Adoption';
 
 function App() {
     const [dogs, setDogs] = useState([])
@@ -14,6 +15,7 @@ function App() {
         .then(res => res.json())
         .then(data => setDogs(data))
     }, [])
+    console.log(dogs)
 
     function handleAddDog(addDog) {
         let ids = []
@@ -42,7 +44,6 @@ function App() {
         })
     }
 
-
     return (
         <div id="App">
             <Switch>
@@ -55,6 +56,9 @@ function App() {
                 </Route>
                 <Route path="/:id">
                     <DetailedDog deleteDog={deleteDog} />
+                </Route>
+                <Route path="adopted">
+                    <Adoption />
                 </Route>
             </Switch>
         </div>

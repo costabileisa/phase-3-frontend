@@ -50,6 +50,7 @@ function DetailedDog({ deleteDog }) {
 
     function handleAdopt() {
         deleteDog(id)
+        history.push("/adopted")
     }
 
     return(
