@@ -14,8 +14,6 @@ function DetailedDog() {
     })
     let { name, image, description, breed, size, likes } = dogInfo;
 
-    console.log(dogInfo)
-
     useEffect(() => {
         fetch(`http://localhost:9292/dogs/${id}`)
         .then(res => res.json())
