@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-function DetailedDog() {
+function DetailedDog({ deleteDog }) {
     const { id } = useParams()
     const history = useHistory()
     const [dogInfo, setDogInfo] = useState({
@@ -48,8 +48,13 @@ function DetailedDog() {
         })
     }
 
+    function handleAdopt() {
+        deleteDog(id)
+    }
+
     return(
         <div id="detailed-dog">
+            <button style={{margin: "5px"}} onClick={handleAdopt}>Adopt Dog</button>
             <h1>{name}</h1>
             <p>Breed: {breed} | Adult Size: {size}</p>
             <button id={dogInfo.id} onClick={handleLike}>❤️</button>

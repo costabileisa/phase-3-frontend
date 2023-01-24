@@ -29,6 +29,19 @@ function App() {
         history.push("/add_dog")
     }
 
+    function deleteDog(dogToDel) {
+        console.log(dogToDel)
+        fetch(`http://localhost:9292/dogs/${dogToDel.id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(() => {
+            const newDogs = dogs.filter(dog => dog.id !== dogToDel.id)
+            console.log(newDogs)
+            setDogs(newDogs)
+        })
+    }
+
 
     return (
         <div id="App">
@@ -41,7 +54,7 @@ function App() {
                     <DogForm handleAddDog={handleAddDog} />
                 </Route>
                 <Route path="/:id">
-                    <DetailedDog />
+                    <DetailedDog deleteDog={deleteDog} />
                 </Route>
             </Switch>
         </div>
