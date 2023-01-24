@@ -34,7 +34,7 @@ function App() {
         <div id="App">
             <Switch>
                 <Route exact path="/">
-                    <button onClick={addDog} style={{float: "right"}}>Add Dog</button>
+                    <button id="add-dog-btn" onClick={addDog}>Add Dog</button>
                     <DogCollection dogs={dogs} />
                 </Route>
                 <Route path="/add_dog">

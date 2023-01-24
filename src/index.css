@@ -85,3 +85,8 @@ form > input:focus, select:focus, .search-input {
     display: inline-block;
     padding-left: 20px;
 }
+
+#add-dog-btn {
+    display: block;
+    padding: auto;
+}
