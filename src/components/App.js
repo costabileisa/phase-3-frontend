@@ -15,7 +15,15 @@ function App() {
         .then(res => res.json())
         .then(data => setDogs(data))
     }, [])
-    console.log(dogs)
+
+    function ensureStateIsSet(state) {
+        return new Promise(function (resolve, reject) {
+            (function waitForState(){
+                if (state) return resolve();
+                setTimeout(waitForState, 30);
+            })();
+        });
+    }
 
     function handleAddDog(addDog) {
         let ids = []
@@ -31,17 +39,24 @@ function App() {
         history.push("/add_dog")
     }
 
-    function deleteDog(dogToDel) {
-        console.log(dogToDel)
-        fetch(`http://localhost:9292/dogs/${dogToDel.id}`, {
+    function deleteDog(id) {
+        fetch(`http://localhost:9292/dogs/${id}`, {
             method: "DELETE"
         })
         .then(res => res.json())
         .then(() => {
-            const newDogs = dogs.filter(dog => dog.id !== dogToDel.id)
-            console.log(newDogs)
+            const newDogs = dogs.filter(dog => dog.id !== id)
             setDogs(newDogs)
         })
+    }
+
+    function findDog(id) {
+        if (dogs) {
+            return dogs.find(dogObj => dogObj.id == id)
+        }
+        else {
+            findDog(id)
+        }
     }
 
     return (
@@ -54,11 +69,11 @@ function App() {
                 <Route path="/add_dog">
                     <DogForm handleAddDog={handleAddDog} />
                 </Route>
-                <Route path="/:id">
-                    <DetailedDog deleteDog={deleteDog} />
+                <Route exact path="/:id">
+                    <DetailedDog findDog={findDog} />
                 </Route>
-                <Route path="adopted">
-                    <Adoption />
+                <Route path="/:id/adopted">
+                    <Adoption deleteDog={deleteDog} findDog={findDog} />
                 </Route>
             </Switch>
         </div>

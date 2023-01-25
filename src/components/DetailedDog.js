@@ -1,36 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-function DetailedDog({ deleteDog }) {
+function DetailedDog({ findDog }) {
     const { id } = useParams()
     const history = useHistory()
-    const [dogInfo, setDogInfo] = useState({
-        name: "",
-        image: "",
-        description: "",
-        breed: "",
-        size: "",
-        likes: 0
-    })
-    let { name, image, description, breed, size, likes } = dogInfo;
 
-    useEffect(() => {
-        fetch(`http://localhost:9292/dogs/${id}`)
-        .then(res => res.json())
-        .then(dogData => {
-            fetch(`http://localhost:9292/breeds/${dogData.breed_id}`)
-            .then(res => res.json())
-            .then(breedData => setDogInfo({
-                id: dogData.id,
-                name: dogData.name,
-                image: dogData.img_url,
-                description: dogData.img_description,
-                breed: breedData.breed,
-                size: breedData.size,
-                likes: dogData.likes
-            }))
-        })
-    }, [])
+    const dogInfo = findDog(id)
 
     function goBack() {
         history.push("/")
@@ -49,8 +24,7 @@ function DetailedDog({ deleteDog }) {
     }
 
     function handleAdopt() {
-        deleteDog(id)
-        history.push("/adopted")
+        history.push(`/${id}/adopted`)
     }
 
     return(
