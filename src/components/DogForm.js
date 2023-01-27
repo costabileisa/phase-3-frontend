@@ -12,14 +12,14 @@ function DogForm({ handleAddDog }) {
     })
     const [breeds, setBreeds] = useState([])
     const history = useHistory();
-
     let breedForm = false;
+
 
     useEffect(() => {
         fetch("http://localhost:9292/breeds")
         .then(res => res.json())
         .then(data => setBreeds(data))
-    }, [dogData])
+     }, [])
 
     const values = breeds.map(breed => <option key={breed.id}>{breed.breed}</option>)
 

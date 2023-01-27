@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
-import DogCollection from "./DogCollection";
 import DogForm from "./DogForm";
 import DetailedDog from "./DetailedDog";
 import Adoption from './Adoption';
+import Dogs from "./Dogs";
 
 function App() {
     const [dogs, setDogs] = useState([])
-    const history = useHistory()
 
     useEffect(() => {
         fetch("http://localhost:9292/dogs")
@@ -16,27 +15,14 @@ function App() {
         .then(data => setDogs(data))
     }, [])
 
-    function ensureStateIsSet(state) {
-        return new Promise(function (resolve, reject) {
-            (function waitForState(){
-                if (state) return resolve();
-                setTimeout(waitForState, 30);
-            })();
-        });
-    }
-
     function handleAddDog(addDog) {
-        let ids = []
-        dogs.map(dog => ids = [...ids, dog.id])
-        if (ids.includes(addDog.id)) {
-            return alert("That dog already exists!")
-        } else {
-            setDogs([...dogs, addDog])
-        }
-    }
-
-    function addDog() {
-        history.push("/add_dog")
+        // let ids = []
+        // dogs.forEach(obj => obj.map(dog => ids = [...ids, dog.id])
+        // if (ids.includes(addDog.id)) {
+        //     return alert("That dog already exists!")
+        // } else {
+        //     setDogs([...dogs, addDog])
+        // }
     }
 
     function deleteDog(id) {
@@ -48,6 +34,10 @@ function App() {
             const newDogs = dogs.filter(dog => dog.id !== id)
             setDogs(newDogs)
         })
+    }
+
+    function editDogLikes(id) {
+        console.log(id)
     }
 
     function findDog(id) {
@@ -62,15 +52,17 @@ function App() {
     return (
         <div id="App">
             <Switch>
-                <Route exact path="/">
-                    <button id="add-dog-btn" onClick={addDog}>Add Dog</button>
-                    <DogCollection dogs={dogs} />
+                <Route exact path ="/">
+                    <h1>Home</h1>
+                </Route>
+                <Route exact path="/dogs">
+                    <Dogs dogs={dogs} />
                 </Route>
                 <Route path="/add_dog">
-                    <DogForm handleAddDog={handleAddDog} />
+                    <DogForm dogs={dogs} handleAddDog={handleAddDog} />
                 </Route>
-                <Route exact path="/:id">
-                    <DetailedDog findDog={findDog} />
+                <Route path="/dogs/:id">
+                    <DetailedDog findDog={findDog} likeDog={editDogLikes} />
                 </Route>
                 <Route path="/:id/adopted">
                     <Adoption deleteDog={deleteDog} findDog={findDog} />
