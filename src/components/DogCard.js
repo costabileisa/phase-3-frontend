@@ -6,7 +6,7 @@ function DogCard({ dog }) {
     
     function handleMoreInfo(e) {
         const id = e.target.parentNode.id;
-        history.push(`/${id}`)
+        history.push(`/dogs/${id}`, dog)
     }
 
     return (

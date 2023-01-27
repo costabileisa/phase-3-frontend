@@ -8,21 +8,21 @@ import Dogs from "./Dogs";
 
 function App() {
     const [dogs, setDogs] = useState([])
+    const [breeds, setBreeds] = useState([])
 
     useEffect(() => {
         fetch("http://localhost:9292/dogs")
         .then(res => res.json())
         .then(data => setDogs(data))
     }, [])
+    useEffect(() => {
+        fetch("http://localhost:9292/breeds")
+        .then(res => res.json())
+        .then(data => setBreeds(data))
+     }, [])
 
     function handleAddDog(addDog) {
-        // let ids = []
-        // dogs.forEach(obj => obj.map(dog => ids = [...ids, dog.id])
-        // if (ids.includes(addDog.id)) {
-        //     return alert("That dog already exists!")
-        // } else {
-        //     setDogs([...dogs, addDog])
-        // }
+        setDogs(current => [...current, addDog])
     }
 
     function deleteDog(id) {
@@ -59,7 +59,7 @@ function App() {
                     <Dogs dogs={dogs} />
                 </Route>
                 <Route path="/add_dog">
-                    <DogForm dogs={dogs} handleAddDog={handleAddDog} />
+                    <DogForm breeds={breeds} setBreeds={setBreeds} handleAddDog={handleAddDog} />
                 </Route>
                 <Route path="/dogs/:id">
                     <DetailedDog findDog={findDog} likeDog={editDogLikes} />

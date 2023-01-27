@@ -1,34 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import BreedForm from "./BreedForm"
 
-function DogForm({ handleAddDog }) {
+function DogForm({ breeds, setBreeds, handleAddDog }) {
     const [dogData, setDogData] = useState({
         name: "",
         img_url: "",
         img_description: "",
         breed: ""
     })
-    const [breeds, setBreeds] = useState([])
     const history = useHistory();
     let breedForm = false;
-
-
-    useEffect(() => {
-        fetch("http://localhost:9292/breeds")
-        .then(res => res.json())
-        .then(data => setBreeds(data))
-     }, [])
 
     const values = breeds.map(breed => <option key={breed.id}>{breed.breed}</option>)
 
     function goBack() {
-        history.push("/")
+        history.push("/dogs")
     }
 
     function handleChange(e) {
-        setDogData({...dogData, [e.target.name]: e.target.value})
+        const { name, value } = e.target
+        setDogData({...dogData, [name]: value})
     }
 
     if (dogData.breed === "Add Breed") {
@@ -37,6 +30,7 @@ function DogForm({ handleAddDog }) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        console.log(dogData)
 
         fetch("http://localhost:9292/dogs", {
             method: "POST",
@@ -48,7 +42,7 @@ function DogForm({ handleAddDog }) {
         .then(res => res.json())
         .then(data => handleAddDog(data))
 
-        history.push("/")
+        history.push("/dogs")
     }
 
     return(
