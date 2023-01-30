@@ -11,8 +11,8 @@ function Home ({ dogs }) {
 
     return (
         <div id="home">
-            <button id="add-dog-btn" onClick={addDog}>Add Dog</button>
             <DogCollection dogs={dogs} />
+            <button id="add-dog-btn" onClick={addDog}>Add Dog</button>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import DogForm from "./DogForm";
 import DetailedDog from "./DetailedDog";
 import Adoption from './Adoption';
 import Dogs from "./Dogs";
+import NavBar from './Navbar';
 
 function App() {
     const [dogs, setDogs] = useState(null)
@@ -51,6 +52,7 @@ function App() {
 
     return (
         <div id="App">
+            <NavBar />
             <Switch>
                 <Route exact path ="/">
                     <h1>Home</h1>
@@ -58,7 +60,7 @@ function App() {
                 <Route exact path="/dogs">
                     {dogs ? <Dogs dogs={dogs} /> : null}
                 </Route>
-                <Route path="/add_dog">
+                <Route path="/add-dog">
                     {breeds ? <DogForm breeds={breeds} setBreeds={setBreeds} handleAddDog={handleAddDog} /> : null}
                 </Route>
                 <Route path="/dogs/:id">
