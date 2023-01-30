@@ -30,7 +30,6 @@ function DogForm({ breeds, setBreeds, handleAddDog }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(dogData)
 
         fetch("http://localhost:9292/dogs", {
             method: "POST",

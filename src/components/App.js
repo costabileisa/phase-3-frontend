@@ -7,8 +7,8 @@ import Adoption from './Adoption';
 import Dogs from "./Dogs";
 
 function App() {
-    const [dogs, setDogs] = useState([])
-    const [breeds, setBreeds] = useState([])
+    const [dogs, setDogs] = useState(null)
+    const [breeds, setBreeds] = useState(null)
 
     useEffect(() => {
         fetch("http://localhost:9292/dogs")
@@ -22,7 +22,8 @@ function App() {
      }, [])
 
     function handleAddDog(addDog) {
-        setDogs(current => [...current, addDog])
+        const currentDogs = dogs.filter(dog => dog.id !== addDog.id)
+        setDogs(() => [...currentDogs, addDog])
     }
 
     function deleteDog(id) {
@@ -37,16 +38,15 @@ function App() {
     }
 
     function editDogLikes(id) {
-        console.log(id)
-    }
-
-    function findDog(id) {
-        if (dogs) {
-            return dogs.find(dogObj => dogObj.id == id)
-        }
-        else {
-            findDog(id)
-        }
+        const newDogs = dogs.map(dog => {
+            if (dog.id == id) {
+                const newLikes = ++dog.likes
+                return {...dog, newLikes}
+            } else {
+                return dog
+            }
+        })
+        setDogs(newDogs)
     }
 
     return (
@@ -56,16 +56,16 @@ function App() {
                     <h1>Home</h1>
                 </Route>
                 <Route exact path="/dogs">
-                    <Dogs dogs={dogs} />
+                    {dogs ? <Dogs dogs={dogs} /> : null}
                 </Route>
                 <Route path="/add_dog">
-                    <DogForm breeds={breeds} setBreeds={setBreeds} handleAddDog={handleAddDog} />
+                    {breeds ? <DogForm breeds={breeds} setBreeds={setBreeds} handleAddDog={handleAddDog} /> : null}
                 </Route>
                 <Route path="/dogs/:id">
-                    <DetailedDog findDog={findDog} likeDog={editDogLikes} />
+                    {dogs ? <DetailedDog dogs={dogs} likeDog={editDogLikes} /> : null}
                 </Route>
                 <Route path="/:id/adopted">
-                    <Adoption deleteDog={deleteDog} findDog={findDog} />
+                    {dogs ? <Adoption deleteDog={deleteDog} /> : null}
                 </Route>
             </Switch>
         </div>
