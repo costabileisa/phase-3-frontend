@@ -1,16 +1,11 @@
 import React from "react"
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom"
 
-function Adoption({ deleteDog, findDog }) {
-    const { id } = useParams()
+function Adoption({ deleteDog }) {
+
     const history = useHistory()
+    const name = history.location.state
 
-    let foundDog = findDog(id)
-    if (!foundDog) {
-        foundDog = { name: "" }
-    }
-
-    deleteDog(id)
 
     setTimeout(() => {
         history.push("/")
@@ -18,7 +13,7 @@ function Adoption({ deleteDog, findDog }) {
 
     return (
         <div id="adoption">
-            <h1>Thank you for adopting {foundDog.name}!</h1>
+            <h1>Thank you for adopting {name}!</h1>
         </div>
     )
 }

@@ -13,8 +13,8 @@ function DetailedDog({ dogs, likeDog }) {
         history.push("/dogs")
     }
 
-    function handleAdopt(e) {
-        history.push(`/${id}/adopted`)
+    function handleAdopt() {
+        history.push(`/${id}/adopted`, name)
     }
 
     function handleLike() {
