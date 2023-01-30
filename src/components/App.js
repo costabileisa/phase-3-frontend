@@ -14,7 +14,7 @@ function App() {
         fetch("http://localhost:9292/dogs")
         .then(res => res.json())
         .then(data => setDogs(data))
-    }, [dogs])
+    }, [])
 
     function handleAddDog(data) {
         setDogs(() => [...dogs, data])
@@ -26,13 +26,13 @@ function App() {
         })
         .then(res => res.json())
         .then(() => {
-            const newDogs = dogs.filter(dog => dog.id !== id)
+            const newDogs = dogs.filter(dog => dog.id !== parseInt(id))
             setDogs(newDogs)
         })
     }
 
     function editDogLikes(data) {
-        const newDogs = dogs.map(dog => dog.id == data.id ? data : dog)
+        const newDogs = dogs.map(dog => dog.id === parseInt(data.id) ? data : dog)
         setDogs(newDogs)
     }
 
