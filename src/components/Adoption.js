@@ -1,15 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
 
-function Adoption({ deleteDog }) {
+function Adoption({ adoptDog }) {
 
+    const { id } = useParams()
     const history = useHistory()
     const name = history.location.state
 
-
-    setTimeout(() => {
-        history.push("/")
-    }, 10000)
+    useEffect(() => {
+        adoptDog(id)
+        
+        setTimeout(() => {
+            history.push("/dogs")
+        }, 5000)
+    }, [])
 
     return (
         <div id="adoption">

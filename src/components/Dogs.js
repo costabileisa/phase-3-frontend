@@ -6,7 +6,7 @@ function Home ({ dogs }) {
     const history = useHistory()
 
     function addDog() {
-        history.push("/add_dog")
+        history.push("/add-dog")
     }
 
     return (

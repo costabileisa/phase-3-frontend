@@ -9,18 +9,12 @@ import NavBar from './Navbar';
 
 function App() {
     const [dogs, setDogs] = useState(null)
-    const [breeds, setBreeds] = useState(null)
 
     useEffect(() => {
         fetch("http://localhost:9292/dogs")
         .then(res => res.json())
         .then(data => setDogs(data))
-    }, [])
-    useEffect(() => {
-        fetch("http://localhost:9292/breeds")
-        .then(res => res.json())
-        .then(data => setBreeds(data))
-     }, [])
+    }, [dogs])
 
     function handleAddDog(data) {
         setDogs(() => [...dogs, data])
@@ -53,13 +47,13 @@ function App() {
                     {dogs ? <Dogs dogs={dogs} /> : null}
                 </Route>
                 <Route path="/add-dog">
-                    {breeds ? <DogForm breeds={breeds} setBreeds={setBreeds} handleAddDog={handleAddDog} /> : null}
+                    <DogForm handleAddDog={handleAddDog} />
                 </Route>
                 <Route path="/dogs/:id">
                     {dogs ? <DetailedDog dogs={dogs} likeDog={editDogLikes} /> : null}
                 </Route>
                 <Route path="/:id/adopted">
-                    {dogs ? <Adoption deleteDog={deleteDog} /> : null}
+                    {dogs ? <Adoption adoptDog={deleteDog} /> : null}
                 </Route>
             </Switch>
         </div>
