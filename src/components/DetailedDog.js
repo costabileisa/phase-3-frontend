@@ -6,7 +6,7 @@ function DetailedDog({ dogs, likeDog }) {
     const { id } = useParams()
     const dog = dogs?.find(dog => dog.id == id)
 
-    const { name, img_url, img_description, likes } = dog
+    let { name, img_url, img_description, likes } = dog
     const { breed, size } = dog.breed
 
     function goBack() {
@@ -18,7 +18,17 @@ function DetailedDog({ dogs, likeDog }) {
     }
 
     function handleLike() {
-        likeDog(id)
+        const newLikes = ++dog.likes
+        fetch(`http://localhost:9292/dogs/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({...dog, newLikes})
+        })
+        .then(res => res.json())
+        .then(data => likeDog(data))
+
     }
 
     return(

@@ -22,9 +22,8 @@ function App() {
         .then(data => setBreeds(data))
      }, [])
 
-    function handleAddDog(addDog) {
-        const currentDogs = dogs.filter(dog => dog.id !== addDog.id)
-        setDogs(() => [...currentDogs, addDog])
+    function handleAddDog(data) {
+        setDogs(() => [...dogs, data])
     }
 
     function deleteDog(id) {
@@ -38,15 +37,8 @@ function App() {
         })
     }
 
-    function editDogLikes(id) {
-        const newDogs = dogs.map(dog => {
-            if (dog.id == id) {
-                const newLikes = ++dog.likes
-                return {...dog, newLikes}
-            } else {
-                return dog
-            }
-        })
+    function editDogLikes(data) {
+        const newDogs = dogs.map(dog => dog.id == data.id ? data : dog)
         setDogs(newDogs)
     }
 
