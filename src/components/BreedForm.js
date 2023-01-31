@@ -36,7 +36,7 @@ function BreedForm({ breeds, setBreeds, dogData, setDogData }) {
     }
 
     return (
-        <div id="add-breed">
+        <div className="add-breed">
             <h1>Breed Form</h1>
             <form className="breed-form" onSubmit={handleSubmit}>
                 <label htmlFor="breed">Breed Name:</label>

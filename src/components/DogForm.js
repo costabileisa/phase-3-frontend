@@ -3,23 +3,16 @@ import { useHistory } from "react-router-dom";
 
 import BreedForm from "./BreedForm"
 
-function DogForm({ handleAddDog }) {
+function DogForm({ breeds, setBreeds, handleAddDog }) {
     const [dogData, setDogData] = useState({
         name: "",
         img_url: "",
         img_description: "",
         breed: ""
     })
-    const [breeds, setBreeds] = useState(null)
 
     const history = useHistory();
     let breedForm = false;
-
-    useEffect(() => {
-        fetch("http://localhost:9292/breeds")
-        .then(res => res.json())
-        .then(data => setBreeds(data))
-    }, [])
 
     const values = breeds ? breeds.map(breed => <option key={breed.id}>{breed.breed}</option>) : null
 
@@ -53,7 +46,7 @@ function DogForm({ handleAddDog }) {
     }
 
     return(
-        <div id="add-dog">
+        <div className="add-dog">
             <h1>Dog Form</h1>
             <form className="dog-form" onSubmit={handleSubmit}>
                 {/* Name */}

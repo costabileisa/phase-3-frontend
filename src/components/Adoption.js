@@ -16,7 +16,7 @@ function Adoption({ adoptDog }) {
     }, [])
 
     return (
-        <div id="adoption">
+        <div className="adoption">
             <h1>Thank you for adopting {name}!</h1>
         </div>
     )

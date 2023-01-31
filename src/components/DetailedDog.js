@@ -32,7 +32,7 @@ function DetailedDog({ dogs, likeDog }) {
     }
 
     return(
-        <div id="detailed-dog">
+        <div className="detailed-dog">
             <button style={{margin: "5px"}} onClick={handleAdopt}>Adopt Dog</button>
             <h1>{name}</h1>
             <p>Breed: {breed} | Adult Size: {size}</p> 

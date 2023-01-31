@@ -2,12 +2,12 @@ body {
     font-family: Andale Mono, monospace;
 }
 
-#dog-collection {
+.dog-collection {
     margin: 2rem;
     display: block;
 }
 
-#card {
+.dog-card {
     text-align: center;
     border: grey solid 1px;
     padding: 1rem;

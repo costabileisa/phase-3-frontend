@@ -20,6 +20,12 @@ function NavBar() {
                 Dogs
             </NavLink>
             <NavLink
+            exact to="/breeds"
+            activeStyle={style}
+            >
+                Breeds
+            </NavLink>
+            <NavLink
             exact to="/add-dog"
             activeStyle={style}
             >
