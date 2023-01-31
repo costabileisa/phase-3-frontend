@@ -4,8 +4,9 @@ import { Switch, Route } from "react-router-dom";
 import DogForm from "./DogForm";
 import DetailedDog from "./DetailedDog";
 import Adoption from './Adoption';
-import Dogs from "./Dogs";
+import Dogs from "./DogCollection";
 import NavBar from './Navbar';
+import Home from "./Home";
 
 function App() {
     const [dogs, setDogs] = useState(null)
@@ -41,7 +42,7 @@ function App() {
             <NavBar />
             <Switch>
                 <Route exact path ="/">
-                    <h1>Home</h1>
+                    <Home />
                 </Route>
                 <Route exact path="/dogs">
                     {dogs ? <Dogs dogs={dogs} /> : null}

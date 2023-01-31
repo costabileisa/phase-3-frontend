@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 function DetailedDog({ dogs, likeDog }) {
     const history = useHistory()
     const { id } = useParams()
-    const dog = dogs?.find(dog => dog.id == id)
+    const dog = dogs.find(dog => dog.id == id)
 
     let { name, img_url, img_description, likes } = dog
     const { breed, size } = dog.breed

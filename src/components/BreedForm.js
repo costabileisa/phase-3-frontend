@@ -41,7 +41,7 @@ function BreedForm({ breeds, setBreeds, dogData, setDogData }) {
             <form className="breed-form" onSubmit={handleSubmit}>
                 <label htmlFor="breed">Breed Name:</label>
                 <input id="breed" name="breed" type="text" value={breedData.breed} onChange={handleChange} />
-                <br></br>
+                <br />
                 <label htmlFor="size">Average Adult Size:</label>
                 <select id="size" name="size" value={breedData.size} onChange={handleChange}>
                     <option>-</option>
@@ -49,7 +49,7 @@ function BreedForm({ breeds, setBreeds, dogData, setDogData }) {
                     <option>Medium</option>
                     <option>Large</option>
                 </select>
-                <br></br>
+                <br />
                 <input type="submit" />
             </form>
         </div>

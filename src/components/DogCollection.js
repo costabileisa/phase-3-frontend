@@ -1,14 +1,20 @@
-import React from 'react';
-import DogCard from "./DogCard"
+import React from "react"
+import { useHistory } from "react-router-dom"
+import Dogs from "./Dogs"
 
-function DogCollection({ dogs }) {
-    const dogsToList = dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
+function DogCollection ({ dogs }) {
+    const history = useHistory()
+
+    function addDog() {
+        history.push("/add-dog")
+    }
 
     return (
         <div id="dog-collection">
-            {dogsToList}
+            <Dogs dogs={dogs} />
+            <button id="add-dog-btn" onClick={addDog}>Add Dog</button>
         </div>
-    );
+    )
 }
 
 export default DogCollection;
