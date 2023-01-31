@@ -10,7 +10,7 @@ function DogCard({ dog }) {
     }
 
     return (
-        <div className="dog-card">
+        <div className="dog-card card">
             <div className="card-details" id={dog.id}>
                 <h2>{dog.name}</h2>
                 <img src={dog.img_url} alt={dog.img_description} className="dog-avatar" />

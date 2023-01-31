@@ -7,7 +7,7 @@ body {
     display: block;
 }
 
-.dog-card {
+.card {
     text-align: center;
     border: grey solid 1px;
     padding: 1rem;
