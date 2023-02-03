@@ -36,13 +36,25 @@ function App() {
         .then(res => res.json())
         .then(() => {
             const newDogs = dogs.filter(dog => dog.id !== parseInt(id))
+            const newBreeds = breeds.map(breed => breed.dogs.filter(dog => dog.id !== parseInt(id)))
             setDogs(newDogs)
+            setBreeds(newBreeds)
         })
     }
 
     function editDogLikes(data) {
         const newDogs = dogs.map(dog => dog.id === parseInt(data.id) ? data : dog)
+
+        const newBreeds = breeds.map(breed => {
+            if (breed.dogs.map(dog => dog.id).includes(data.id)) {
+                const newBreedDogs = breed.dogs.map(dog => dog.id === parseInt(data.id) ? data : dog)
+                return {...breed, dogs: newBreedDogs}
+            } else {
+                return breed
+            }
+        })
         setDogs(newDogs)
+        setBreeds(newBreeds)
     }
 
     return (

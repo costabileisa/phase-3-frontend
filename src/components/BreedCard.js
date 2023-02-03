@@ -7,7 +7,7 @@ function BreedCard({ breed }) {
                 <h2>{breed.breed}</h2>
                 <p>Some dogs belonging to this breed:</p>
                 <ul>
-                    {breed.dogs.slice(0, 10).map(dog => <li key={dog.id}>{dog.name}</li>)}
+                    {breed.dogs.slice(0, 10).map(dog => <li key={dog.id}>{dog.name} | ❤️ {dog.likes}</li>)}
                 </ul>
             </div>
         </div>
