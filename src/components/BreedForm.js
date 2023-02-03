@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function BreedForm({ breeds, setBreeds, dogData, setDogData }) {
     const [breedData, setBreedData] = useState({
         breed: "",
-        size: ""
+        size: "",
     })
 
     function handleAddBreed(addBreed) {

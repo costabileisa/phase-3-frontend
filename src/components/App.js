@@ -26,7 +26,10 @@ function App() {
     }, [])
 
     function handleAddDog(data) {
+        const newBreeds = breeds.map(breed => breed.id === data.breed.id ? {...breed, dogs: [...breed.dogs, data]} : breed)
+        console.log(newBreeds)
         setDogs(() => [...dogs, data])
+        // setBreeds()
     }
 
     function deleteDog(id) {
